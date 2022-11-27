@@ -133,7 +133,10 @@ android {
     ndkVersion rootProject.ext.ndkVersion
 
     compileSdkVersion rootProject.ext.compileSdkVersion
-
+    packagingOptions {
+        pickFirst '**/libc++_shared.so'
+        pickFirst '**/libfbjni.so'
+    }
     defaultConfig {
         applicationId "com.parkinglotreservation"
         minSdkVersion rootProject.ext.minSdkVersion
@@ -287,6 +290,8 @@ dependencies {
     } else {
         implementation jscFlavor
     }
+    // 네이버 지도 SDK
+    implementation 'com.naver.maps:map-sdk:3.16.0'
 }
 
 if (isNewArchitectureEnabled()) {
