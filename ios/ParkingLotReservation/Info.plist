@@ -72,5 +72,7 @@
     <string>Zocial.ttf</string>
     <string>Fontisto.ttf</string>
 	</array>
+	<key>NSLocationWhenInUseUsageDescription</key>
+  <string>Program requires GPS to track cars and job orders</string>
 </dict>
 </plist>
