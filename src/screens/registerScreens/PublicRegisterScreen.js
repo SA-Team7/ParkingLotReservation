@@ -64,9 +64,7 @@ const PublicRegisterScreen = ({navigation}) => {
             alignItems: 'center',
           }}
           onPress={() => setModalVisible(true)}>
-          <Text style={[styles.input, {color: 'gray'}]}>
-            {addr ? addr : '주소 검색'}
-          </Text>
+          <Text style={{color: 'gray'}}>{addr ? addr : '주소 검색'}</Text>
           <Icon name="search" size={30} color="black" />
         </TouchableOpacity>
 

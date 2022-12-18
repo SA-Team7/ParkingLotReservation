@@ -148,7 +148,7 @@ const styles = StyleSheet.create({
     paddingHorizontal: 40,
     paddingVertical: 10,
     position: 'absolute',
-    bottom: 40,
+    bottom: 30,
     alignSelf: 'center',
   },
   buttonText: {

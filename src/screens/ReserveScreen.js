@@ -23,7 +23,7 @@ const ReserveScreen = ({route, navigation}) => {
   }, []);
 
   React.useEffect(() => {
-    setTotalTime(ticket1 * 30 + ticket2 * 60 + ticket3 * 120);
+    setTotalTime(ticket1 * 30 + ticket2 * 60 + ticket3 * 180);
   }, [ticket1, ticket2, ticket3]);
 
   const reserve = () => {
@@ -68,7 +68,9 @@ const ReserveScreen = ({route, navigation}) => {
         <Text style={styles.headerText}>주차장 예약</Text>
       </View>
       <View>
-        <Text>{route.params.item.PARKING_NAME}</Text>
+        <Text style={{textAlign: 'center', fontSize: 20, fontWeight: 'bold'}}>
+          {route.params.item.PARKING_NAME}
+        </Text>
         <Text>잔여 자리 {route.params.item.CAPACITY}</Text>
       </View>
       <View style={styles.line}></View>
@@ -126,8 +128,9 @@ const ReserveScreen = ({route, navigation}) => {
 
       <TouchableOpacity
         style={styles.payButton}
+        disabled={totalTime === 0}
         onPress={() => {
-          navigation.navigate('Payment');
+          navigation.navigate('Payment', {reserve: reserve});
         }}>
         <Text style={styles.payButtonText}>결제하기</Text>
       </TouchableOpacity>
@@ -179,6 +182,8 @@ const styles = StyleSheet.create({
     paddingVertical: 10,
     position: 'absolute',
     bottom: 40,
+    backgroundColor: 'white',
+    zIndex: 1,
   },
   payButtonText: {
     fontSize: 18,
