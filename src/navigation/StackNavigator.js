@@ -9,6 +9,7 @@ import PublicRegisterScreen from '../screens/registerScreens/PublicRegisterScree
 import PrivateRegisterScreen from '../screens/registerScreens/PrivateRegisterScreen';
 import SharingRegisterScreen from '../screens/registerScreens/SharingRegisterScreen';
 import ParkingLotManagerScreen from '../ParkingLotManagerScreen';
+import ReservationConfirmScreen from '../screens/ReservationConfirmScreen';
 
 const Stack = createNativeStackNavigator();
 
@@ -18,7 +19,11 @@ const StackNavigator = () => {
       <Stack.Screen name="Home" component={HomeScreen} />
       <Stack.Screen name="Info" component={ParkingLotInfoScreen} />
       <Stack.Screen name="Reservation" component={ReserveScreen} />
-
+      <Stack.Screen
+        name="Confirm"
+        component={ReservationConfirmScreen}
+        options={{title: '예약확인', headerShown: true}}
+      />
       <Stack.Screen name="MainRegister" component={MainRegisterScreen} />
       <Stack.Screen name="PublicRegister" component={PublicRegisterScreen} />
       <Stack.Screen name="PrivateRegister" component={PrivateRegisterScreen} />

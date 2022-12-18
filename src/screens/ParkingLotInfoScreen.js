@@ -13,7 +13,7 @@ import {getStatusBarHeight} from 'react-native-status-bar-height';
 import AnimatedHeader from '../components/AnimatedHeader';
 const windowHeight = Dimensions.get('window').height;
 
-const ParkingLotInfoScreen = ({ route, navigation }) => {
+const ParkingLotInfoScreen = ({route, navigation}) => {
   const scrollOffsetY = React.useRef(new Animated.Value(0)).current;
 
   // route.params.item:
@@ -80,7 +80,10 @@ const ParkingLotInfoScreen = ({ route, navigation }) => {
         </View>
         <View style={styles.infoTextContainer}>
           <Text style={styles.text}>운영시간</Text>
-          <Text style={styles.text}>{route.params.item.operatingTime.open} ~ {route.params.item.operatingTime.close}</Text>
+          <Text style={styles.text}>
+            {route.params.item.operatingTime.open} ~{' '}
+            {route.params.item.operatingTime.close}
+          </Text>
         </View>
         <View style={styles.line}></View>
         <View style={{width: '90%', alignItems: 'center'}}>
@@ -99,11 +102,13 @@ const ParkingLotInfoScreen = ({ route, navigation }) => {
           </View>
         </View>
       </ScrollView>
-      <TouchableOpacity style={styles.reservationButton} onPress={() => {
-        navigation.navigate("Reservation", {
-          item: route.params.item,
-        });
-      }}>
+      <TouchableOpacity
+        style={styles.reservationButton}
+        onPress={() => {
+          navigation.navigate('Reservation', {
+            item: route.params.item,
+          });
+        }}>
         <Text style={styles.buttonText}>예약하기</Text>
       </TouchableOpacity>
     </View>

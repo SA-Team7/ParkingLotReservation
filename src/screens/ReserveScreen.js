@@ -4,7 +4,7 @@ import {StyleSheet, Text, TouchableOpacity, View} from 'react-native';
 import {getStatusBarHeight} from 'react-native-status-bar-height';
 import Icon from 'react-native-vector-icons/AntDesign';
 
-const ReserveScreen = ({ route, navigation }) => {
+const ReserveScreen = ({route, navigation}) => {
   const [totalTime, setTotalTime] = React.useState(0);
   const [ticket1, setTicket1] = React.useState(0);
   const [ticket2, setTicket2] = React.useState(0);
@@ -28,12 +28,13 @@ const ReserveScreen = ({ route, navigation }) => {
 
   const reserve = () => {
     const data = {
-      date: date,
-      time: totalTime,
-      parkingLot: '주차장 정보',
+      date: date, // 예약 날짜
+      time: totalTime, // 주차권 시간
+      parkingLotName: route.params.item.PARKING_NAME, // 주차장 이름
+      address: route.params.item.ADDRESS, // 주차장 주소
     };
     const newReservationData = [...reservationData, data];
-    AsyncStorage.setItem('reservationData', JSON.stringify(reservationData));
+    AsyncStorage.setItem('reservationData', JSON.stringify(newReservationData));
   };
 
   // route.params.item:
@@ -123,7 +124,11 @@ const ReserveScreen = ({ route, navigation }) => {
         </View>
       </View>
 
-      <TouchableOpacity style={styles.payButton}>
+      <TouchableOpacity
+        style={styles.payButton}
+        onPress={() => {
+          reserve();
+        }}>
         <Text style={styles.payButtonText}>결제하기</Text>
       </TouchableOpacity>
     </View>

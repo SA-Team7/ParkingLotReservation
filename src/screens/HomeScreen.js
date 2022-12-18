@@ -60,12 +60,18 @@ const HomeScreen = ({route, navigation}) => {
         latitude: parseFloat(item.LATITUDE),
         longitude: parseFloat(item.LONGITUDE),
       };
-      markker.push(<Marker coordinate={form} pinColor="blue" onClick={() => {
-        navigation.navigate('Info', {
-          item: item,
-        });
-        console.log(item);
-      }}/>);
+      markker.push(
+        <Marker
+          coordinate={form}
+          pinColor="blue"
+          onClick={() => {
+            navigation.navigate('Info', {
+              item: item,
+            });
+            console.log(item);
+          }}
+        />,
+      );
     });
   }
 
@@ -89,11 +95,11 @@ const HomeScreen = ({route, navigation}) => {
   return (
     <View style={styles.container}>
       <View style={styles.inputContainer}>
-        <TouchableOpacity
+        {/* <TouchableOpacity
           style={styles.button}
-          onPress={() => navigation.navigate('Reservation')}>
+          onPress={() => navigation.navigate('Confirm')}>
           <Icon name="format-list-bulleted" size={30} color="black" />
-        </TouchableOpacity>
+        </TouchableOpacity> */}
         <TextInput style={styles.input} placeholder="Search" />
       </View>
       <NaverMapView
@@ -104,9 +110,7 @@ const HomeScreen = ({route, navigation}) => {
           latitude: location.latitude,
           longitude: location.longitude,
         }}>
-
         {markker}
-
       </NaverMapView>
       <Button
         title="주차장 등록"
@@ -114,6 +118,11 @@ const HomeScreen = ({route, navigation}) => {
           navigation.navigate('PublicRegister');
         }}></Button>
       <Button title="목록 보기" onPress={() => {}}></Button>
+      <Button
+        title="예약 확인"
+        onPress={() => {
+          navigation.navigate('Confirm');
+        }}></Button>
     </View>
   );
 };
