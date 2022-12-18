@@ -10,6 +10,7 @@ import PrivateRegisterScreen from '../screens/registerScreens/PrivateRegisterScr
 import SharingRegisterScreen from '../screens/registerScreens/SharingRegisterScreen';
 import ParkingLotManagerScreen from '../ParkingLotManagerScreen';
 import ReservationConfirmScreen from '../screens/ReservationConfirmScreen';
+import ParkingLotListScreen from '../screens/ParkingLotListScreen';
 
 const Stack = createNativeStackNavigator();
 
@@ -32,6 +33,8 @@ const StackNavigator = () => {
         name="ParkingLotManager"
         component={ParkingLotManagerScreen}
       />
+      <Stack.Screen name="ParkingLotList" component={ParkingLotListScreen}></Stack.Screen>
+
     </Stack.Navigator>
   );
 };

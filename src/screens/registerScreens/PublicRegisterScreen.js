@@ -14,11 +14,13 @@ const PublicRegisterScreen = ({navigation}) => {
     <View style = {styles.container}>
       <View>
         <Text style={styles.title}>공영 주차장 등록</Text>
-        <Text style = {styles.text}>주차장명</Text>
-        <TextInput 
-          style = {styles.input}
-          onChangeText = {onChangeName}
-          value = { name }/>
+        <View>
+          <Text style = {styles.text}>주차장명</Text>
+          <TextInput 
+            style = {styles.input}
+            onChangeText = {onChangeName}
+            value = { name }/>
+        </View>
 
         <Text style = {styles.text}>주소</Text>
         <TextInput

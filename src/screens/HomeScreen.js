@@ -68,7 +68,6 @@ const HomeScreen = ({route, navigation}) => {
             navigation.navigate('Info', {
               item: item,
             });
-            console.log(item);
           }}
         />,
       );
@@ -94,6 +93,7 @@ const HomeScreen = ({route, navigation}) => {
 
   return (
     <View style={styles.container}>
+
       <View style={styles.inputContainer}>
         {/* <TouchableOpacity
           style={styles.button}
@@ -102,6 +102,7 @@ const HomeScreen = ({route, navigation}) => {
         </TouchableOpacity> */}
         <TextInput style={styles.input} placeholder="Search" />
       </View>
+
       <NaverMapView
         style={styles.map}
         showsMyLocationButton={true}
@@ -114,7 +115,6 @@ const HomeScreen = ({route, navigation}) => {
       </NaverMapView>
 
       <View style={styles.bottomContainer}>
-        
         <View style={styles.bottomBtn}>
           <Button
             title="주차장 등록"
@@ -123,7 +123,16 @@ const HomeScreen = ({route, navigation}) => {
             }}></Button>
         </View>
         <View style={styles.bottomBtn}>
-          <Button title="목록 보기" onPress={() => {}}></Button>
+          <Button title="목록 보기" onPress={() => {
+            if (route.params != null) {
+              console.log(route.params.map);
+              navigation.navigate('ParkingLotList', {
+                map: route.params.map,
+              });
+            } else {
+              alert('주차장이 없습니다');
+            }
+          }}></Button>
         </View>
         <View style={styles.bottomBtn}>
           <Button
@@ -133,6 +142,7 @@ const HomeScreen = ({route, navigation}) => {
             }}></Button>
         </View>
       </View>
+
     </View>
   );
 };
