@@ -1,10 +1,7 @@
 import React from 'react';
 import {
-<<<<<<< HEAD
   Alert,
   Button,
-=======
->>>>>>> 5124e0aeed3e668e83515f08b7dcb50dbef4ba74
   PermissionsAndroid,
   Platform,
   StyleSheet,
@@ -12,41 +9,15 @@ import {
   TouchableOpacity,
   View,
 } from 'react-native';
-<<<<<<< HEAD
-import NaverMapView, { Marker } from 'react-native-nmap';
+import NaverMapView, {Marker} from 'react-native-nmap';
 import Icon from 'react-native-vector-icons/MaterialIcons';
 import Geolocation from 'react-native-geolocation-service';
 
-const HomeScreen = ({ route, navigation }) => {
+const HomeScreen = ({route, navigation}) => {
   const [location, setLocation] = React.useState({
     latitude: 37.541650730110426,
     longitude: 127.07881353966297,
-=======
-import NaverMapView from 'react-native-nmap';
-import Icon from 'react-native-vector-icons/MaterialIcons';
-import Geolocation from 'react-native-geolocation-service';
-
-const HomeScreen = ({navigation}) => {
-  const [location, setLocation] = React.useState({
-    latitude: 37.5408,
-    longitude: 126.9783881,
->>>>>>> 5124e0aeed3e668e83515f08b7dcb50dbef4ba74
   });
-  const requestLocationPermission = async () => {
-    if (Platform.OS === 'ios') {
-      await Geolocation.requestAuthorization('whenInUse');
-      getCurrentLocation();
-    } else {
-      const granted = await PermissionsAndroid.request(
-        PermissionsAndroid.PERMISSIONS.ACCESS_FINE_LOCATION,
-      );
-      if (granted === PermissionsAndroid.RESULTS.GRANTED) {
-        getCurrentLocation();
-      } else {
-        console.log('Location permission denied');
-      }
-    }
-  };
 
   const getCurrentLocation = () => {
     Geolocation.getCurrentPosition(
@@ -62,29 +33,44 @@ const HomeScreen = ({navigation}) => {
   };
 
   React.useEffect(() => {
+    const requestLocationPermission = async () => {
+      if (Platform.OS === 'ios') {
+        await Geolocation.requestAuthorization('whenInUse');
+        getCurrentLocation();
+      } else {
+        const granted = await PermissionsAndroid.request(
+          PermissionsAndroid.PERMISSIONS.ACCESS_FINE_LOCATION,
+        );
+        if (granted === PermissionsAndroid.RESULTS.GRANTED) {
+          getCurrentLocation();
+        } else {
+          console.log('Location permission denied');
+        }
+      }
+    };
     requestLocationPermission();
   }, []);
+
   console.log(location);
-<<<<<<< HEAD
 
   const markker = [];
-  if(route.params != null) {
-    route.params.map.forEach((item) => {
+  if (route.params != null) {
+    route.params.map.forEach(item => {
       const form = {
         latitude: parseFloat(item.LATITUDE),
-        longitude: parseFloat(item.LONGITUDE)
+        longitude: parseFloat(item.LONGITUDE),
       };
-      markker.push(<Marker coordinate={form} pinColor="blue"/>)
+      markker.push(<Marker coordinate={form} pinColor="blue" />);
     });
   }
   console.log(markker);
 
-=======
->>>>>>> 5124e0aeed3e668e83515f08b7dcb50dbef4ba74
   return (
     <View style={styles.container}>
       <View style={styles.inputContainer}>
-        <TouchableOpacity style={styles.button}>
+        <TouchableOpacity
+          style={styles.button}
+          onPress={() => navigation.navigate('Reservation')}>
           <Icon name="format-list-bulleted" size={30} color="black" />
         </TouchableOpacity>
         <TextInput style={styles.input} placeholder="Search" />
@@ -97,18 +83,21 @@ const HomeScreen = ({navigation}) => {
           latitude: location.latitude,
           longitude: location.longitude,
         }}>
-        <Marker coordinate={location} pinColor="blue" onClick={() => {
-          navigation.navigate("Reservation");
-        }}/>
+        <Marker
+          coordinate={location}
+          pinColor="blue"
+          onClick={() => {
+            navigation.navigate('Reservation');
+          }}
+        />
         {markker}
-
       </NaverMapView>
-      <Button title="주차장 등록" onPress={() => {
-        navigation.navigate('PublicRegister');
-      }}></Button>
-      <Button title="목록 보기" onPress={() => {
-        
-      }}></Button>
+      <Button
+        title="주차장 등록"
+        onPress={() => {
+          navigation.navigate('PublicRegister');
+        }}></Button>
+      <Button title="목록 보기" onPress={() => {}}></Button>
     </View>
   );
 };

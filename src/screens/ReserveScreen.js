@@ -1,9 +1,41 @@
+import AsyncStorage from '@react-native-async-storage/async-storage';
 import React from 'react';
 import {StyleSheet, Text, TouchableOpacity, View} from 'react-native';
 import {getStatusBarHeight} from 'react-native-status-bar-height';
 import Icon from 'react-native-vector-icons/AntDesign';
 
 const ReserveScreen = ({navigation}) => {
+  const [totalTime, setTotalTime] = React.useState(0);
+  const [ticket1, setTicket1] = React.useState(0);
+  const [ticket2, setTicket2] = React.useState(0);
+  const [ticket3, setTicket3] = React.useState(0);
+  const date = new Date();
+  const [reservationData, setReservationData] = React.useState([]);
+
+  React.useEffect(() => {
+    const getReservationData = async () => {
+      const data = await AsyncStorage.getItem('reservationData');
+      if (data) {
+        setReservationData(JSON.parse(data));
+      }
+    };
+    getReservationData();
+  }, []);
+
+  React.useEffect(() => {
+    setTotalTime(ticket1 * 30 + ticket2 * 60 + ticket3 * 120);
+  }, [ticket1, ticket2, ticket3]);
+
+  const reserve = () => {
+    const data = {
+      date: date,
+      time: totalTime,
+      parkingLot: '주차장 정보',
+    };
+    const newReservationData = [...reservationData, data];
+    AsyncStorage.setItem('reservationData', JSON.stringify(reservationData));
+  };
+
   return (
     <View style={styles.container}>
       <TouchableOpacity
@@ -19,16 +51,47 @@ const ReserveScreen = ({navigation}) => {
         <Text>잔여 자리</Text>
       </View>
       <View style={styles.line}></View>
-      <TouchableOpacity style={styles.ticketButton}>
+      <View style={styles.btnHolder}>
+        <TouchableOpacity
+          disabled={ticket1 === 0}
+          onPress={() => setTicket1(ticket1 - 1)}>
+          <Text>-</Text>
+        </TouchableOpacity>
         <Text>30분</Text>
-      </TouchableOpacity>
-      <TouchableOpacity style={styles.ticketButton}>
+        <TouchableOpacity onPress={() => setTicket1(ticket1 + 1)}>
+          <Text>+</Text>
+        </TouchableOpacity>
+      </View>
+      <View style={styles.btnHolder}>
+        <TouchableOpacity
+          disabled={ticket2 === 0}
+          onPress={() => setTicket2(ticket2 - 1)}>
+          <Text>-</Text>
+        </TouchableOpacity>
         <Text>1시간</Text>
-      </TouchableOpacity>
-      <TouchableOpacity style={styles.ticketButton}>
+        <TouchableOpacity onPress={() => setTicket2(ticket2 + 1)}>
+          <Text>+</Text>
+        </TouchableOpacity>
+      </View>
+      <View style={styles.btnHolder}>
+        <TouchableOpacity
+          disabled={ticket3 === 0}
+          onPress={() => setTicket3(ticket3 - 1)}>
+          <Text>-</Text>
+        </TouchableOpacity>
         <Text>3시간</Text>
-      </TouchableOpacity>
-      <Text>총 예약 시간</Text>
+        <TouchableOpacity onPress={() => setTicket3(ticket3 + 1)}>
+          <Text>+</Text>
+        </TouchableOpacity>
+      </View>
+      <Text>
+        총 예약 시간{' '}
+        <Text style={{fontSize: 15, fontWeight: 'bold'}}>
+          {' '}
+          {Math.floor(totalTime / 60)}시간 {totalTime % 60}분
+        </Text>
+      </Text>
+
       <View style={styles.info}>
         <View style={styles.infoTextContainer}>
           <Text>기본요금</Text>
@@ -39,6 +102,7 @@ const ReserveScreen = ({navigation}) => {
           <Text>60분당 3000원</Text>
         </View>
       </View>
+
       <TouchableOpacity style={styles.payButton}>
         <Text style={styles.payButtonText}>결제하기</Text>
       </TouchableOpacity>
@@ -106,6 +170,16 @@ const styles = StyleSheet.create({
   infoTextContainer: {
     flexDirection: 'row',
     justifyContent: 'space-between',
+    marginBottom: 20,
+  },
+  btnHolder: {
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    borderWidth: 1,
+    borderRadius: 10,
+    width: '40%',
+    paddingHorizontal: 20,
+    paddingVertical: 5,
     marginBottom: 20,
   },
 });

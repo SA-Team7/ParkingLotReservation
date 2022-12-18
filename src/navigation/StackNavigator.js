@@ -19,11 +19,14 @@ const StackNavigator = () => {
       <Stack.Screen name="Info" component={ParkingLotInfoScreen} />
       <Stack.Screen name="Reservation" component={ReserveScreen} />
 
-      <Stack.Screen name="MainRegister" component={MainRegisterScreen}/>
+      <Stack.Screen name="MainRegister" component={MainRegisterScreen} />
       <Stack.Screen name="PublicRegister" component={PublicRegisterScreen} />
       <Stack.Screen name="PrivateRegister" component={PrivateRegisterScreen} />
       <Stack.Screen name="SharingRegister" component={SharingRegisterScreen} />
-      <Stack.Screen name="ParkingLotManager" component={ParkingLotManagerScreen}/>
+      <Stack.Screen
+        name="ParkingLotManager"
+        component={ParkingLotManagerScreen}
+      />
     </Stack.Navigator>
   );
 };
