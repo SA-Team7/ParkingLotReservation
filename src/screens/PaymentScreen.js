@@ -5,9 +5,8 @@ function Separator() {
   return <View style={styles.separator} />;
 }
 const PaymentScreen = ({route, navigation}) => {
-
   console.log(route.params.item);
-
+  const reserve = route.params.reserve;
   return (
     <View style={styles.container}>
       <Text style={styles.title}> 결제 방법 </Text>
@@ -15,7 +14,8 @@ const PaymentScreen = ({route, navigation}) => {
         title="카드 결제"
         onPress={() => {
           Alert.alert('결제가 완료 되었습니다.');
-          navigation.navigate("ParkingLotManager", {
+          reserve();
+          navigation.navigate('ParkingLotManager', {
             type2: 1,
           });
         }}
@@ -26,7 +26,10 @@ const PaymentScreen = ({route, navigation}) => {
         color="#FFFF00"
         onPress={() => {
           Alert.alert('결제가 완료 되었습니다.');
-          navigation.reset({routes: [{name: 'Home'}]});
+          reserve();
+          navigation.navigate('ParkingLotManager', {
+            type2: 1,
+          });
         }}
       />
       <Separator />
@@ -35,7 +38,10 @@ const PaymentScreen = ({route, navigation}) => {
         color="#81c147"
         onPress={() => {
           Alert.alert('결제가 완료 되었습니다.');
-          navigation.reset({routes: [{name: 'Home'}]});
+          reserve();
+          navigation.navigate('ParkingLotManager', {
+            type2: 1,
+          });
         }}
       />
     </View>

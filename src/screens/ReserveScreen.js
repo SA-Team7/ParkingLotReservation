@@ -133,7 +133,10 @@ const ReserveScreen = ({route, navigation}) => {
         disabled={totalTime === 0}
         onPress={() => {
           console.log(route.params.item);
-          navigation.navigate('Payment', {item: route.params.item});
+          navigation.navigate('Payment', {
+            item: route.params.item,
+            reserve: reserve,
+          });
         }}>
         <Text style={styles.payButtonText}>결제하기</Text>
       </TouchableOpacity>
