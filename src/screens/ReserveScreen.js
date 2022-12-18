@@ -127,7 +127,7 @@ const ReserveScreen = ({route, navigation}) => {
       <TouchableOpacity
         style={styles.payButton}
         onPress={() => {
-          reserve();
+          navigation.navigate('Payment');
         }}>
         <Text style={styles.payButtonText}>결제하기</Text>
       </TouchableOpacity>

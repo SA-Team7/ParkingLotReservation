@@ -3,7 +3,7 @@ import {createNativeStackNavigator} from '@react-navigation/native-stack';
 import HomeScreen from '../screens/HomeScreen';
 import ReserveScreen from '../screens/ReserveScreen';
 import ParkingLotInfoScreen from '../screens/ParkingLotInfoScreen';
-
+import PaymentScreen from '../screens/PaymentScreen';
 import MainRegisterScreen from '../screens/registerScreens/MainRegisterScreen';
 import PublicRegisterScreen from '../screens/registerScreens/PublicRegisterScreen';
 import PrivateRegisterScreen from '../screens/registerScreens/PrivateRegisterScreen';
@@ -29,6 +29,7 @@ const StackNavigator = () => {
       <Stack.Screen name="PublicRegister" component={PublicRegisterScreen} />
       <Stack.Screen name="PrivateRegister" component={PrivateRegisterScreen} />
       <Stack.Screen name="SharingRegister" component={SharingRegisterScreen} />
+      <Stack.Screen name="Payment" component={PaymentScreen} />
       <Stack.Screen
         name="ParkingLotManager"
         component={ParkingLotManagerScreen}
