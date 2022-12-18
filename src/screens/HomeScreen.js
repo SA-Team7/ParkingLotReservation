@@ -1,7 +1,10 @@
 import React from 'react';
 import {
+<<<<<<< HEAD
   Alert,
   Button,
+=======
+>>>>>>> 5124e0aeed3e668e83515f08b7dcb50dbef4ba74
   PermissionsAndroid,
   Platform,
   StyleSheet,
@@ -9,6 +12,7 @@ import {
   TouchableOpacity,
   View,
 } from 'react-native';
+<<<<<<< HEAD
 import NaverMapView, { Marker } from 'react-native-nmap';
 import Icon from 'react-native-vector-icons/MaterialIcons';
 import Geolocation from 'react-native-geolocation-service';
@@ -17,6 +21,16 @@ const HomeScreen = ({ route, navigation }) => {
   const [location, setLocation] = React.useState({
     latitude: 37.541650730110426,
     longitude: 127.07881353966297,
+=======
+import NaverMapView from 'react-native-nmap';
+import Icon from 'react-native-vector-icons/MaterialIcons';
+import Geolocation from 'react-native-geolocation-service';
+
+const HomeScreen = ({navigation}) => {
+  const [location, setLocation] = React.useState({
+    latitude: 37.5408,
+    longitude: 126.9783881,
+>>>>>>> 5124e0aeed3e668e83515f08b7dcb50dbef4ba74
   });
   const requestLocationPermission = async () => {
     if (Platform.OS === 'ios') {
@@ -51,6 +65,7 @@ const HomeScreen = ({ route, navigation }) => {
     requestLocationPermission();
   }, []);
   console.log(location);
+<<<<<<< HEAD
 
   const markker = [];
   if(route.params != null) {
@@ -64,6 +79,8 @@ const HomeScreen = ({ route, navigation }) => {
   }
   console.log(markker);
 
+=======
+>>>>>>> 5124e0aeed3e668e83515f08b7dcb50dbef4ba74
   return (
     <View style={styles.container}>
       <View style={styles.inputContainer}>
