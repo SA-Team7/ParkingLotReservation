@@ -112,17 +112,27 @@ const HomeScreen = ({route, navigation}) => {
         }}>
         {markker}
       </NaverMapView>
-      <Button
-        title="주차장 등록"
-        onPress={() => {
-          navigation.navigate('PublicRegister');
-        }}></Button>
-      <Button title="목록 보기" onPress={() => {}}></Button>
-      <Button
-        title="예약 확인"
-        onPress={() => {
-          navigation.navigate('Confirm');
-        }}></Button>
+
+      <View style={styles.bottomContainer}>
+        
+        <View style={styles.bottomBtn}>
+          <Button
+            title="주차장 등록"
+            onPress={() => {
+              navigation.navigate('PublicRegister');
+            }}></Button>
+        </View>
+        <View style={styles.bottomBtn}>
+          <Button title="목록 보기" onPress={() => {}}></Button>
+        </View>
+        <View style={styles.bottomBtn}>
+          <Button
+            title="예약 확인"
+            onPress={() => {
+              navigation.navigate('Confirm');
+            }}></Button>
+        </View>
+      </View>
     </View>
   );
 };
@@ -154,10 +164,22 @@ const styles = StyleSheet.create({
   },
   map: {
     width: '100%',
-    height: '90%',
+    height: '100%',
   },
   button: {
     marginRight: 10,
+  },
+  bottomContainer: {
+    position: 'absolute',
+    bottom: 30,
+    zIndex: 1,
+    width: '80%',
+    flexDirection: 'row',
+    alignItems: 'center',
+    justifyContent: 'center',
+  },
+  bottomBtn: {
+    padding: 5,
   },
 });
 export default HomeScreen;
