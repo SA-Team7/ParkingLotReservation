@@ -8,17 +8,17 @@ class ParkingLot {
   ADDRESS;
   CAPACITY;
   operatingTime = {
-    open: "08:00",
-    close: "23:00"
-  }
+    open: '08:00',
+    close: '23:00',
+  };
   operatingTimeHoliday = {
-    open: "08:00",
-    close: "23:00"
-  }
+    open: '08:00',
+    close: '23:00',
+  };
   fee = {
-    hour: "3000",
-    halfHour: "2000",
-  }
+    hour: '3000',
+    halfHour: '2000',
+  };
   isAvailable = false;
 
   constructor(SERIAL, PARKING_NAME, LATITUDE, LONGITUDE, ADDRESS, CAPACITY) {
@@ -42,8 +42,15 @@ class ParkingLotPublic extends ParkingLot {
   TYPE;
 
   constructor(SERIAL, info) {
-    super(SERIAL, info.name, info.latitude, info.longitude, info.addr, info.capacity);
-    this.TYPE = "공영주차장";
+    super(
+      SERIAL,
+      info.name,
+      info.latitude,
+      info.longitude,
+      info.addr,
+      info.capacity,
+    );
+    this.TYPE = '공영주차장';
   }
 }
 class ParkingLotPrivate extends ParkingLot {
@@ -51,8 +58,15 @@ class ParkingLotPrivate extends ParkingLot {
   TYPE;
 
   constructor(SERIAL, info) {
-    super(SERIAL, info.name, info.latitude, info.longitude, info.addr, info.capacity);
-    this.TYPE = "민영주차장";
+    super(
+      SERIAL,
+      info.name,
+      info.latitude,
+      info.longitude,
+      info.addr,
+      info.capacity,
+    );
+    this.TYPE = '민영주차장';
   }
 }
 class ParkingLotSharing extends ParkingLot {
@@ -60,8 +74,15 @@ class ParkingLotSharing extends ParkingLot {
   TYPE;
 
   constructor(SERIAL, info) {
-    super(SERIAL, info.name, info.latitude, info.longitude, info.addr, info.capacity);
-    this.TYPE  = "공유주차장";
+    super(
+      SERIAL,
+      info.name,
+      info.latitude,
+      info.longitude,
+      info.addr,
+      info.capacity,
+    );
+    this.TYPE = '공유주차장';
   }
 }
 class ParkingLotFactory {
