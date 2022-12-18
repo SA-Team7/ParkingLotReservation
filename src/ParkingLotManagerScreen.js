@@ -7,14 +7,27 @@ class ParkingLot {
   LONGITUDE;
   ADDRESS;
   CAPACITY;
+  operatingTime = {
+    open: "08:00",
+    close: "23:00"
+  }
+  operatingTimeHoliday = {
+    open: "08:00",
+    close: "23:00"
+  }
+  fee = {
+    hour: "3000",
+    halfHour: "2000",
+  }
   isAvailable = false;
 
-  constructor(SERIAL, PARKING_NAME, LATITUDE, LONGITUDE, ADDRESS) {
+  constructor(SERIAL, PARKING_NAME, LATITUDE, LONGITUDE, ADDRESS, CAPACITY) {
     this.SERIAL = SERIAL;
     this.PARKING_NAME = PARKING_NAME;
     this.LATITUDE = LATITUDE;
     this.LONGITUDE = LONGITUDE;
     this.ADDRESS = ADDRESS;
+    this.CAPACITY = CAPACITY;
   }
 
   setAvailable(isAvailable) {
@@ -26,23 +39,29 @@ class ParkingLot {
 }
 class ParkingLotPublic extends ParkingLot {
   //attributeSet of public parkingLot
+  TYPE;
 
   constructor(SERIAL, info) {
-    super(SERIAL, info.name, info.latitude, info.longitude, info.addr);
+    super(SERIAL, info.name, info.latitude, info.longitude, info.addr, info.capacity);
+    this.TYPE = "공영주차장";
   }
 }
 class ParkingLotPrivate extends ParkingLot {
   //attributeSet of private parkingLot
+  TYPE;
 
   constructor(SERIAL, info) {
-    super(SERIAL, info.name, info.latitude, info.longitude, info.addr);
+    super(SERIAL, info.name, info.latitude, info.longitude, info.addr, info.capacity);
+    this.TYPE = "민영주차장";
   }
 }
 class ParkingLotSharing extends ParkingLot {
   //attributeSet of sharing parkingLot
+  TYPE;
 
   constructor(SERIAL, info) {
-    super(SERIAL, info.name, info.latitude, info.longitude, info.addr);
+    super(SERIAL, info.name, info.latitude, info.longitude, info.addr, info.capacity);
+    this.TYPE  = "공유주차장";
   }
 }
 class ParkingLotFactory {
@@ -85,12 +104,10 @@ const ParkingLotManagerScreen = ({route, navigation}) => {
     type: route.params.type,
     name: route.params.name,
     addr: route.params.addr,
-    numOfParkingLot: route.params.numOfParkingLot,
+    capacity: route.params.numOfParkingLot,
     latitude: route.params.latitude,
     longitude: route.params.longitude,
   };
-
-  console.log('aa');
 
   plm.registerParkingLot(info);
 

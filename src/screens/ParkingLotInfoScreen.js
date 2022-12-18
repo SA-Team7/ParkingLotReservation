@@ -12,8 +12,29 @@ import {
 import {getStatusBarHeight} from 'react-native-status-bar-height';
 import AnimatedHeader from '../components/AnimatedHeader';
 const windowHeight = Dimensions.get('window').height;
-const ParkingLotInfoScreen = () => {
+
+const ParkingLotInfoScreen = ({ route, navigation }) => {
   const scrollOffsetY = React.useRef(new Animated.Value(0)).current;
+
+  // route.params.item:
+  // SERIAL
+  // PARKING_NAME
+  // LATITUDE
+  // LONGITUDE
+  // ADDRESS
+  // CAPACITY
+  // operatingTime = {
+  //   open: "08:00",
+  //   close: "23:00"
+  // }
+  // operatingTimeHoliday = {
+  //   open: "08:00",
+  //   close: "23:00"
+  // }
+  // fee = {
+  //   hour: "3000",
+  //   halfHour: "2000",
+  // }
 
   return (
     <View style={styles.container}>
@@ -41,9 +62,9 @@ const ParkingLotInfoScreen = () => {
           {useNativeDriver: false},
         )}>
         <View style={{marginTop: 25, alignItems: 'center'}}>
-          <Text style={styles.nameText}>주차장 이름 </Text>
-          <Text style={styles.text}>주소</Text>
-          <Text style={styles.text}>주차장 종류</Text>
+          <Text style={styles.nameText}>{route.params.item.PARKING_NAME}</Text>
+          <Text style={styles.text}>{route.params.item.ADDRESS}</Text>
+          <Text style={styles.text}>{route.params.item.TYPE}</Text>
         </View>
         <View style={styles.buttonContainer}>
           <TouchableOpacity>
@@ -55,11 +76,11 @@ const ParkingLotInfoScreen = () => {
         </View>
         <View style={styles.infoTextContainer}>
           <Text style={styles.text}>주차요금</Text>
-          <Text style={styles.text}>1시간 3000원</Text>
+          <Text style={styles.text}>1시간 {route.params.item.fee.hour}원</Text>
         </View>
         <View style={styles.infoTextContainer}>
           <Text style={styles.text}>운영시간</Text>
-          <Text style={styles.text}>08:00 ~ 24:00</Text>
+          <Text style={styles.text}>{route.params.item.operatingTime.open} ~ {route.params.item.operatingTime.close}</Text>
         </View>
         <View style={styles.line}></View>
         <View style={{width: '90%', alignItems: 'center'}}>
@@ -69,16 +90,20 @@ const ParkingLotInfoScreen = () => {
           <View style={styles.extraInfo}>
             <View style={styles.infoTextContainer}>
               <Text>기본요금</Text>
-              <Text>30분 2000원</Text>
+              <Text>30분 {route.params.item.fee.halfHour}원</Text>
             </View>
             <View style={styles.infoTextContainer}>
               <Text>추가요금</Text>
-              <Text>60분당 3000원</Text>
+              <Text>60분당 {route.params.item.fee.hour}원</Text>
             </View>
           </View>
         </View>
       </ScrollView>
-      <TouchableOpacity style={styles.reservationButton}>
+      <TouchableOpacity style={styles.reservationButton} onPress={() => {
+        navigation.navigate("Reservation", {
+          item: route.params.item,
+        });
+      }}>
         <Text style={styles.buttonText}>예약하기</Text>
       </TouchableOpacity>
     </View>

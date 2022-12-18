@@ -60,10 +60,31 @@ const HomeScreen = ({route, navigation}) => {
         latitude: parseFloat(item.LATITUDE),
         longitude: parseFloat(item.LONGITUDE),
       };
-      markker.push(<Marker coordinate={form} pinColor="blue" />);
+      markker.push(<Marker coordinate={form} pinColor="blue" onClick={() => {
+        navigation.navigate('Info', {
+          item: item,
+        });
+        console.log(item);
+      }}/>);
     });
   }
-  console.log(markker);
+
+  /* TEST 용 CODE
+  const p0 = { latitude: 37.54616167171836, longitude: 127.06933553964075};
+  const test = {
+    TYPE: "공영주차장",
+    SERIAL: "50271828",
+    PARKING_NAME: "jisung",
+    ADDRESS: "동일로28길 47",
+    LATITUDE: "37.54616167171836",
+    LONGITUDE: "127.06933553964075",
+    CAPACITY: "24",
+  }
+  markker.push(<Marker coordinate={p0} pinColor="red" onClick={() => {
+    navigation.navigate('Info', {
+      item: test,
+    });
+  }}></Marker>) */
 
   return (
     <View style={styles.container}>
@@ -83,14 +104,9 @@ const HomeScreen = ({route, navigation}) => {
           latitude: location.latitude,
           longitude: location.longitude,
         }}>
-        <Marker
-          coordinate={location}
-          pinColor="blue"
-          onClick={() => {
-            navigation.navigate('Reservation');
-          }}
-        />
+
         {markker}
+
       </NaverMapView>
       <Button
         title="주차장 등록"

@@ -4,7 +4,7 @@ import {StyleSheet, Text, TouchableOpacity, View} from 'react-native';
 import {getStatusBarHeight} from 'react-native-status-bar-height';
 import Icon from 'react-native-vector-icons/AntDesign';
 
-const ReserveScreen = ({navigation}) => {
+const ReserveScreen = ({ route, navigation }) => {
   const [totalTime, setTotalTime] = React.useState(0);
   const [ticket1, setTicket1] = React.useState(0);
   const [ticket2, setTicket2] = React.useState(0);
@@ -36,6 +36,26 @@ const ReserveScreen = ({navigation}) => {
     AsyncStorage.setItem('reservationData', JSON.stringify(reservationData));
   };
 
+  // route.params.item:
+  // SERIAL
+  // PARKING_NAME
+  // LATITUDE
+  // LONGITUDE
+  // ADDRESS
+  // CAPACITY
+  // operatingTime = {
+  //   open: "08:00",
+  //   close: "23:00"
+  // }
+  // operatingTimeHoliday = {
+  //   open: "08:00",
+  //   close: "23:00"
+  // }
+  // fee = {
+  //   hour: "3000",
+  //   halfHour: "2000",
+  // }
+
   return (
     <View style={styles.container}>
       <TouchableOpacity
@@ -47,8 +67,8 @@ const ReserveScreen = ({navigation}) => {
         <Text style={styles.headerText}>주차장 예약</Text>
       </View>
       <View>
-        <Text>주차장 이름</Text>
-        <Text>잔여 자리</Text>
+        <Text>{route.params.item.PARKING_NAME}</Text>
+        <Text>잔여 자리 {route.params.item.CAPACITY}</Text>
       </View>
       <View style={styles.line}></View>
       <View style={styles.btnHolder}>
@@ -95,11 +115,11 @@ const ReserveScreen = ({navigation}) => {
       <View style={styles.info}>
         <View style={styles.infoTextContainer}>
           <Text>기본요금</Text>
-          <Text>30분 2000원</Text>
+          <Text>30분 {route.params.item.fee.halfHour}원</Text>
         </View>
         <View style={styles.infoTextContainer}>
           <Text>추가요금</Text>
-          <Text>60분당 3000원</Text>
+          <Text>60분당 {route.params.item.fee.hour}원</Text>
         </View>
       </View>
 
