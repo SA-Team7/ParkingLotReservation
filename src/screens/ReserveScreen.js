@@ -57,6 +57,8 @@ const ReserveScreen = ({route, navigation}) => {
   //   halfHour: "2000",
   // }
 
+  console.log(route.params.item);
+
   return (
     <View style={styles.container}>
       <TouchableOpacity
@@ -130,7 +132,8 @@ const ReserveScreen = ({route, navigation}) => {
         style={styles.payButton}
         disabled={totalTime === 0}
         onPress={() => {
-          navigation.navigate('Payment', {reserve: reserve});
+          console.log(route.params.item);
+          navigation.navigate('Payment', {item: route.params.item});
         }}>
         <Text style={styles.payButtonText}>결제하기</Text>
       </TouchableOpacity>

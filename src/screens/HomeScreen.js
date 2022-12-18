@@ -6,11 +6,9 @@ import {
   Platform,
   StyleSheet,
   TextInput,
-  TouchableOpacity,
   View,
 } from 'react-native';
 import NaverMapView, {Marker} from 'react-native-nmap';
-import Icon from 'react-native-vector-icons/MaterialIcons';
 import Geolocation from 'react-native-geolocation-service';
 
 const HomeScreen = ({route, navigation}) => {
@@ -53,6 +51,7 @@ const HomeScreen = ({route, navigation}) => {
 
   console.log(location);
 
+  //console.log(route.params.map);
   const markker = [];
   if (route.params != null) {
     route.params.map.forEach(item => {

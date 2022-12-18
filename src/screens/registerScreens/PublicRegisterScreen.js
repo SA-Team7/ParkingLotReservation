@@ -103,6 +103,7 @@ const PublicRegisterScreen = ({navigation}) => {
             } else {
               navigation.navigate('ParkingLotManager', {
                 type: 'public',
+                type2: 0,
                 name: name,
                 addr: addr,
                 numOfParkingLot: numOfParkingLot,
@@ -137,7 +138,7 @@ const PublicRegisterScreen = ({navigation}) => {
             style={{width: '100%', height: '100%', marginTop: 10}}
             jsOptions={{animated: true}}
             onSelected={data => {
-              console.log(data);
+              //console.log(data);
               onChangeAddr(data.address);
               setModalVisible(false);
             }}

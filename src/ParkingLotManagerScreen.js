@@ -121,20 +121,27 @@ class ParkingLotManager {
 const plm = new ParkingLotManager();
 
 const ParkingLotManagerScreen = ({route, navigation}) => {
-  const info = {
-    type: route.params.type,
-    name: route.params.name,
-    addr: route.params.addr,
-    capacity: route.params.numOfParkingLot,
-    latitude: route.params.latitude,
-    longitude: route.params.longitude,
-  };
-
-  plm.registerParkingLot(info);
-
-  navigation.navigate('Home', {
-    map: plm.parkingLotMap,
-  });
+  if(route.params.type2 == 0) {
+    const info = {
+      type: route.params.type,
+      name: route.params.name,
+      addr: route.params.addr,
+      capacity: route.params.numOfParkingLot,
+      latitude: route.params.latitude,
+      longitude: route.params.longitude,
+    };
+  
+    plm.registerParkingLot(info);
+  
+    navigation.navigate('Home', {
+      map: plm.parkingLotMap,
+    });
+  } else {
+    navigation.navigate('Home', {
+      map: plm.parkingLotMap,
+    });
+  }
+  
 
   return <View></View>;
 };

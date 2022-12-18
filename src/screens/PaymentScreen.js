@@ -4,8 +4,10 @@ import {StyleSheet, Text, Button, View, Alert} from 'react-native';
 function Separator() {
   return <View style={styles.separator} />;
 }
-const PaymentScreen = ({navigation, route}) => {
-  const reserve = route.params.reserve;
+const PaymentScreen = ({route, navigation}) => {
+
+  console.log(route.params.item);
+
   return (
     <View style={styles.container}>
       <Text style={styles.title}> 결제 방법 </Text>
@@ -13,8 +15,9 @@ const PaymentScreen = ({navigation, route}) => {
         title="카드 결제"
         onPress={() => {
           Alert.alert('결제가 완료 되었습니다.');
-          reserve();
-          navigation.reset({routes: [{name: 'Home'}]});
+          navigation.navigate("ParkingLotManager", {
+            type2: 1,
+          });
         }}
       />
       <Separator />
@@ -23,7 +26,6 @@ const PaymentScreen = ({navigation, route}) => {
         color="#FFFF00"
         onPress={() => {
           Alert.alert('결제가 완료 되었습니다.');
-          reserve();
           navigation.reset({routes: [{name: 'Home'}]});
         }}
       />
@@ -33,7 +35,6 @@ const PaymentScreen = ({navigation, route}) => {
         color="#81c147"
         onPress={() => {
           Alert.alert('결제가 완료 되었습니다.');
-          reserve();
           navigation.reset({routes: [{name: 'Home'}]});
         }}
       />
